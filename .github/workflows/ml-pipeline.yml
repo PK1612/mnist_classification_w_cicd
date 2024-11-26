@@ -19,17 +19,37 @@ jobs:
         python -m pip install --upgrade pip
         pip install torch torchvision pytest
     
+    - name: Check Model Parameters
+      run: |
+        python -c "
+        from src.model import MNISTModel
+        model = MNISTModel()
+        params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+        print(f'Model has {params} parameters')
+        assert params < 25000, f'Model has too many parameters: {params}'
+        "
+    
     - name: Train model
       run: |
         python src/train.py
     
     - name: Run tests
       run: |
-        pytest tests/
+        pytest tests/ -v
     
     - name: Upload trained model
       uses: actions/upload-artifact@v4
       with:
         name: trained-model
         path: models/
+        retention-days: 5
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: |
+          .pytest_cache/
+          pytest-report.xml
         retention-days: 5
