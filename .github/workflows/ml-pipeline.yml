@@ -32,10 +32,11 @@ jobs:
     - name: Train model
       run: |
         python src/train.py
+        ls -la models/  # List models directory contents
     
     - name: Run tests
       run: |
-        pytest tests/ -v
+        pytest tests/ -v --capture=no  # Added --capture=no for more output
     
     - name: Upload trained model
       uses: actions/upload-artifact@v4

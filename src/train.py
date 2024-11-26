@@ -62,7 +62,26 @@ def train():
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     save_path = os.path.join('models', f'mnist_model_{timestamp}.pth')
     os.makedirs('models', exist_ok=True)
+    
+    # Save only the state dict
     torch.save(model.state_dict(), save_path)
+    print(f"Model saved to {save_path}")
+    
+    # Final accuracy check
+    model.eval()
+    correct = 0
+    total = 0
+    with torch.no_grad():
+        for data, target in test_loader:
+            data, target = data.to(device)
+            outputs = model(data)
+            _, predicted = torch.max(outputs.data, 1)
+            total += target.size(0)
+            correct += (predicted == target).sum().item()
+    
+    final_accuracy = 100 * correct / total
+    print(f"Final model accuracy: {final_accuracy:.2f}%")
+    
     return save_path
 
 if __name__ == "__main__":
