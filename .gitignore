@@ -1,0 +1,31 @@
+# Virtual Environment
+venv/
+base/
+env/
+.env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Data and Models
+data/
+*.pth
+models/
+*.dll
+
+# Pytorch specific
+torch/
+torchvision/
+*.so
+*.dylib
+*.dll
+
+# IDE
+.vscode/
+.idea/
+
+# System Files
+.DS_Store
+Thumbs.db
