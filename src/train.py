@@ -23,6 +23,10 @@ def train():
     train_dataset = datasets.MNIST('./data', train=True, download=True, transform=transform)
     train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
     
+    # Add test dataset and loader
+    test_dataset = datasets.MNIST('./data', train=False, download=True, transform=transform)
+    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False)
+    
     # Initialize model
     model = MNISTModel().to(device)
     criterion = nn.CrossEntropyLoss()
