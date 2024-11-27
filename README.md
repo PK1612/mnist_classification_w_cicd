@@ -1,5 +1,7 @@
 # ML Model Training Pipeline
 
+This repository contains the complete implementation of a simple Convolutional Neural Network (CNN) for MNIST digit classification with a complete CI/CD pipeline using GitHub Actions.  
+
 ## Project Architecture
 ```mermaid
 graph LR
@@ -10,11 +12,14 @@ graph LR
 ```
 
 ## Model Architecture
-- Model Type: [Your Model Type]
-- Layers: [Brief description of model layers]
-- Input Shape: [Input dimensions]
-- Output Shape: [Output dimensions]
-
+- Model Type: CNN
+- First Conv Layer : 1 in_channel, 4 out_channel, 3x3 kernels, padding=1
+- Second Conv Layer : 6 channels, 3x3 kernels, padding=1
+- Maxpooling Layer that reduces the dimesnion to 7x7x8
+- First Fully Connected Layer : 392 --> 16
+- Second Fully Connected Layer : 16 --> 10
+- ReLU activations are used throughout
+  
 ## Requirements
 ```txt
 torch>=2.0.0
@@ -47,7 +52,6 @@ Training parameters can be configured in `config.yaml`:
 - Batch size: 32
 - Learning rate: 0.001
 - Epochs: 10
-- [Other hyperparameters]
 
 ## Testing
 Execute tests:
@@ -117,14 +121,3 @@ jobs:
 ├── requirements.txt
 └── README.md
 ```
-
-## Results
-- Training Accuracy: [X]%
-- Validation Accuracy: [X]%
-- Test Accuracy: [X]%
-
-## Contributing
-[Instructions for contributing to the project]
-
-## License
-[Your chosen license]
