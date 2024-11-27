@@ -53,7 +53,7 @@ def test_model_accuracy():
     
     with torch.no_grad():
         for data, target in test_loader:
-            data, target = data.to(device)
+            data, target = data.to(device), target.to(device)
             outputs = model(data)
             _, predicted = torch.max(outputs.data, 1)
             total += target.size(0)
