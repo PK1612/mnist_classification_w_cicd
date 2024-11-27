@@ -1,5 +1,8 @@
 # ML Model Training Pipeline
 
+[![ML Pipeline](https://github.com/PK1612/mnist_classification_w_cicd/actions/workflows/ml-pipeline.yml/badge.svg)]
+(https://github.com/PK1612/mnist_classification_w_cicd/actions/workflows/ml-pipeline.yml)
+
 This repository contains the complete implementation of a simple Convolutional Neural Network (CNN) for MNIST digit classification with a complete CI/CD pipeline using GitHub Actions.  
 
 ## Project Architecture
